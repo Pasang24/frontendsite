@@ -1,0 +1,45 @@
+.header-wrapper {
+  /* background-color: white; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.header-wrapper h2 a,
+.header-buttons a {
+  font-family: "Noto Sans Hebrew", sans-serif;
+  color: #338573;
+  text-decoration: none;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.header-buttons a {
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  background-color: #338573;
+  cursor: pointer;
+  color: white;
+}
+
+.header-buttons a:first-child {
+  background-color: white;
+  color: #338573;
+  font-weight: 100;
+}
+
+@media screen and (width < 420px) {
+  .header-wrapper {
+    padding: 10px 20px;
+  }
+
+  .header-buttons {
+    gap: 14px;
+  }
+}

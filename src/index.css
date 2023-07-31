@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;800&family=Poppins:wght@300;400;500;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #338573;
+}
+
+body,
+#root {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
