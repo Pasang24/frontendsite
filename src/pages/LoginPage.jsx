@@ -15,7 +15,18 @@ function LoginPage() {
     axios
       .post(`${import.meta.env.VITE_SERVER_URL}/login`, payload)
       .then((res) => {
-        console.log(res.data.token);
+        axios
+          .get(`${import.meta.env.VITE_SERVER_URL}/user`, {
+            headers: {
+              Authorization: `Bearer ${res.data.token}`,
+            },
+          })
+          .then((user_res) => {
+            console.log(user_res);
+            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("id",user_res.data.data._id)
+            localStorage.setItem("role",user_res.data.data.role)
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -55,8 +66,8 @@ function LoginPage() {
         <div className="form-field">
           <label htmlFor="role">Role</label>
           <select value={payload.role} name="role" onChange={handleChange}>
-            <option value="Applicant">Applicant</option>
-            <option value="Recruiter">Recruiter</option>
+            <option value="applicant">Applicant</option>
+            <option value="recruiter">Recruiter</option>
           </select>
         </div>
         <button className="form-btn">Login</button>

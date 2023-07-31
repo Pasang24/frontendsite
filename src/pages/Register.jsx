@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   upperCharList,
@@ -10,6 +10,7 @@ import {
 import "./Form.css";
 
 function Register() {
+  const navigate = useNavigate();
   const [role, setRole] = useState("applicant");
 
   const [payload, setPayload] = useState({
@@ -21,6 +22,26 @@ function Register() {
     education: "",
     company: "",
   });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      checkPassword(upperCharList) &&
+      checkPassword(lowerCharList) &&
+      checkPassword(specialCharList) &&
+      payload.password.length >= 8
+    ) {
+      axios
+        .post(`${import.meta.env.VITE_SERVER_URL}/signup`, payload)
+        .then((res) => {
+          console.log(res);
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   const handleChange = (event) => {
     setPayload({ ...payload, [event.target.name]: event.target.value });
@@ -41,7 +62,7 @@ function Register() {
     <div className="page-wrapper">
       <h2 className="form-title">Register</h2>
 
-      <form className="form-wrapper">
+      <form className="form-wrapper" onSubmit={handleSubmit}>
         <div className="input-section">
           <div className="form-field">
             <label htmlFor="name">Name</label>

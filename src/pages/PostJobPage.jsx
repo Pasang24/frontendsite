@@ -19,6 +19,7 @@ function PostJobPage() {
     description: "",
     images: null,
   });
+  
   const [fileName, setFileName] = useState("No selected file");
 
   const categories = [
@@ -33,6 +34,7 @@ function PostJobPage() {
     { name: "Video Editor", value: "Video Editor" },
     { name: "HR", value: "HR" },
   ];
+  
   useEffect(() => {
     console.log(job);
   }, [job]);
