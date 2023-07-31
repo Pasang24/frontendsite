@@ -54,7 +54,7 @@ function AppliedJobs() {
 
   const renderJobs = jobs.map((job, indx) => {
     return (
-      <div className="jobs-table-row">
+      <div className="jobs-table-row" key={indx}>
         <span>{job.title}</span>
         <span>{job.location}</span>
         <span>{job.applied_date}</span>

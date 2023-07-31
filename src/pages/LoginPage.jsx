@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "./Form.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Form.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -23,9 +24,10 @@ function LoginPage() {
           })
           .then((user_res) => {
             console.log(user_res);
-            localStorage.setItem("token", res.data.token)
-            localStorage.setItem("id",user_res.data.data._id)
-            localStorage.setItem("role",user_res.data.data.role)
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", user_res.data.data._id);
+            localStorage.setItem("role", user_res.data.data.role);
+            navigate("/");
           });
       })
       .catch((err) => {
@@ -65,7 +67,12 @@ function LoginPage() {
         </div>
         <div className="form-field">
           <label htmlFor="role">Role</label>
-          <select value={payload.role} name="role" onChange={handleChange}>
+          <select
+            value={payload.role}
+            name="role"
+            onChange={handleChange}
+            required
+          >
             <option value="applicant">Applicant</option>
             <option value="recruiter">Recruiter</option>
           </select>

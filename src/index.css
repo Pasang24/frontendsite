@@ -10,17 +10,9 @@ html {
   height: 100%;
 }
 
-body::-webkit-scrollbar {
-  width: 10px;
-  background-color: white;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #338573;
-}
-
 body,
 #root {
+  overflow-x: hidden;
   scroll-behavior: smooth;
   height: 100%;
 }

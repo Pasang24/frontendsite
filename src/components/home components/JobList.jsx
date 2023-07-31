@@ -15,7 +15,7 @@ function JobList({ jobs, loading, sort, setSort }) {
 
   const renderSkeletons = Array(12)
     .fill(0)
-    .map((_) => <Skeleton />);
+    .map((_, indx) => <Skeleton key={indx} />);
 
   const renderJobs = jobs.map((job, indx) => <Job job={job} key={indx} />);
   return (
