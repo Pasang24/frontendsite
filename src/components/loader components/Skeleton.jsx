@@ -10,15 +10,12 @@ function Skeleton() {
           <div className="h3-skeleton"></div>
           <div className="job-mini-details-skeleton">
             <div>
-              {/* <MdLocationOn /> */}
               <div className="span-skeleton"></div>
             </div>
             <div>
-              {/* <FaMoneyBillWave /> */}
               <div className="span-skeleton"></div>
             </div>
             <div>
-              {/* <BiSolidUser /> */}
               <div className="span-skeleton"></div>
             </div>
           </div>
