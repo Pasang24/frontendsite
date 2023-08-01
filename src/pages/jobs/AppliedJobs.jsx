@@ -19,7 +19,7 @@ function AppliedJobs() {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setAppliedjobs(res.data);
       })
       .catch((err) => {
