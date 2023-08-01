@@ -1,15 +1,15 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from "react-router-dom";
+import ForbiddenPage from "../pages/ForbiddenPage";
 
 function ProtectedRoutes(props) {
-    const role = localStorage.getItem("role");
-    if(role){
-        if (props.role === role){
-            return <Outlet/>
-        }
-        return <h1>Forbidden Page</h1>
+  const role = localStorage.getItem("role");
+  if (role) {
+    if (props.role === role) {
+      return <Outlet />;
     }
-    return <Navigate to="login" />
+    return <ForbiddenPage />;
+  }
+  return <Navigate to="/login" />;
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;
