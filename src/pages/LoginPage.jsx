@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import "./Form.css";
-import { Link } from "react-router-dom";
+import { createPortal } from "react-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoaderContainer from "../components/loader components/LoaderContainer";
+import "./Form.css";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [payload, setPayload] = useState({
     email: "",
     password: "",
-    role: "",
+    role: "applicant",
   });
+
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [error, setError] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
+    setLoggingIn(true);
+    setError("");
     axios
       .post(`${import.meta.env.VITE_SERVER_URL}/login`, payload)
       .then((res) => {
@@ -22,14 +30,16 @@ function LoginPage() {
             },
           })
           .then((user_res) => {
-            console.log(user_res);
-            localStorage.setItem("token", res.data.token)
-            localStorage.setItem("id",user_res.data.data._id)
-            localStorage.setItem("role",user_res.data.data.role)
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("id", user_res.data.data._id);
+            localStorage.setItem("role", user_res.data.data.role);
+            navigate("/");
           });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.msg);
+        setError(err.response.data.msg);
+        setLoggingIn(false);
       });
   }
 
@@ -38,44 +48,66 @@ function LoginPage() {
   }
 
   return (
-    <div className="page-wrapper">
-      <h2 className="form-title">Login</h2>
-      <form className="login-form-wrapper" onSubmit={handleSubmit}>
-        <div className="form-field">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Email *"
-            onChange={handleChange}
-            value={payload.email}
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Password *"
-            onChange={handleChange}
-            value={payload.password}
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="role">Role</label>
-          <select value={payload.role} name="role" onChange={handleChange}>
-            <option value="applicant">Applicant</option>
-            <option value="recruiter">Recruiter</option>
-          </select>
-        </div>
-        <button className="form-btn">Login</button>
-        <div className="form-link">
-          <span>Not a member?</span> <Link to="/register">Register</Link>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="page-wrapper">
+        <h2 className="form-title">Login</h2>
+        <form className="login-form-wrapper" onSubmit={handleSubmit}>
+          <div className="form-field">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              disabled={loggingIn}
+              placeholder="Email *"
+              onChange={handleChange}
+              value={payload.email}
+            />
+          </div>
+          <div className="form-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              required
+              disabled={loggingIn}
+              placeholder="Password *"
+              onChange={handleChange}
+              value={payload.password}
+            />
+            {error === "Invalid Credentials" && (
+              <span className="form-error">Invalid Email or Password!</span>
+            )}
+          </div>
+          <div className="form-field">
+            <label htmlFor="role">Role</label>
+            <select
+              value={payload.role}
+              name="role"
+              onChange={handleChange}
+              required
+            >
+              <option value="applicant">Applicant</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+            {error === "Invalid role" && (
+              <span className="form-error">Invalid Role!</span>
+            )}
+          </div>
+          <button className="form-btn" disabled={loggingIn}>
+            {loggingIn ? "Logging in..." : "Login"}
+          </button>
+          <div className="form-link">
+            <span>Not a member?</span> <Link to="/register">Register</Link>
+          </div>
+        </form>
+      </div>
+      {loggingIn &&
+        createPortal(
+          <LoaderContainer />,
+          document.getElementById("modal-container")
+        )}
+    </>
   );
 }
 

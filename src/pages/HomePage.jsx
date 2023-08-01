@@ -8,7 +8,7 @@ import Pagination from "../components/home components/Pagination.jsx";
 function HomePage() {
   const [jobs, setJobs] = useState([]);
   const [metadata, setMetaData] = useState({
-    total: 0,
+    total: 1,
     page: 1,
     per_page: 9,
   });
