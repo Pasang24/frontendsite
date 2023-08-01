@@ -9,19 +9,29 @@ import PostJobPage from "./pages/PostJobPage.jsx";
 import ShowJob from "./pages/jobs/ShowJob.jsx";
 import PostedJobs from "./pages/jobs/PostedJobs.jsx";
 import AppliedJobs from "./pages/jobs/AppliedJobs.jsx";
+import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
+
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
+
+        <Route path="job/:id" element={<ShowJob />} />
+        
+        <Route element={<ProtectedRoutes role="recruiter" />} >
         <Route path="/postjob" element={<PostJobPage />} />
-        <Route path="jobs/:id" element={<ShowJob />} />
         <Route path="/postedjobs" element={<PostedJobs />} />
+        </Route>
+
+        <Route element={<ProtectedRoutes role="applicant" />}>
         <Route path="/appliedjobs" element={<AppliedJobs />} />
+        </Route>
+
       </Routes>
       <Footer />
     </>

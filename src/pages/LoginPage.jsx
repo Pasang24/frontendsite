@@ -37,7 +37,6 @@ function LoginPage() {
           });
       })
       .catch((err) => {
-        console.log(err.response.data.msg);
         setError(err.response.data.msg);
         setLoggingIn(false);
       });
@@ -63,6 +62,9 @@ function LoginPage() {
               onChange={handleChange}
               value={payload.email}
             />
+            {error === "Invalid email" && (
+              <span className="form-error">Invalid Email</span>
+            )}
           </div>
           <div className="form-field">
             <label htmlFor="password">Password</label>
@@ -75,8 +77,8 @@ function LoginPage() {
               onChange={handleChange}
               value={payload.password}
             />
-            {error === "Invalid Credentials" && (
-              <span className="form-error">Invalid Email or Password!</span>
+            {error === "Invalid Password" && (
+              <span className="form-error">Invalid Password!</span>
             )}
           </div>
           <div className="form-field">

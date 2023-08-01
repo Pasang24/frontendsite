@@ -20,7 +20,6 @@ function Skeleton() {
             </div>
           </div>
         </div>
-
         <div className="button-skeleton"></div>
       </div>
     </div>
