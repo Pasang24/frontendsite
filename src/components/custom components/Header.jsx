@@ -8,19 +8,21 @@ function Header() {
   const role = localStorage.getItem("role") || "noRole";
 
   useEffect(() => {
-    const menu = document.querySelector(".menu");
-    const menuBtn = document.querySelector(".menu-icon-btn");
+    if (role !== "noRole") {
+      const menu = document.querySelector(".menu");
+      const menuBtn = document.querySelector(".menu-icon-btn");
 
-    const hideMenu = (event) => {
-      if (!(menu.contains(event.target) || menuBtn.contains(event.target))) {
-        menu.classList.remove("show-menu");
-      }
-    };
+      const hideMenu = (event) => {
+        if (!(menu.contains(event.target) || menuBtn.contains(event.target))) {
+          menu.classList.remove("show-menu");
+        }
+      };
 
-    document.body.addEventListener("click", hideMenu);
+      document.body.addEventListener("click", hideMenu);
 
-    return () => document.body.removeEventListener("click", hideMenu);
-  }, []);
+      return () => document.body.removeEventListener("click", hideMenu);
+    }
+  }, [role]);
 
   const handleMenuToggle = () => {
     const menu = document.querySelector(".menu");
@@ -45,14 +47,23 @@ function Header() {
       <div className="header-buttons">
         {role === "noRole" && (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" className="light-link">
+              Login
+            </Link>
+            <Link to="/register" className="bold-link">
+              Register
+            </Link>
           </>
         )}
         {role === "applicant" && (
           <>
             <div className="menu-icon">
-              <FaUserCircle fill="#338573" size={35} />
+              <FaUserCircle
+                onClick={handleMenuToggle}
+                className="menu-icon-btn"
+                fill="#338573"
+                size={35}
+              />
               <div className="menu">
                 <Link>Profile</Link>
                 <Link

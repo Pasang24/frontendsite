@@ -1,5 +1,5 @@
 .header-wrapper {
-  /* background-color: white; */
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,9 +8,13 @@
 
 .header-wrapper h2 a,
 .header-buttons a {
-  font-family: "Noto Sans Hebrew", sans-serif;
-  color: #338573;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.header-wrapper h2 a {
+  color: #338573;
+  font-family: "Noto Sans Hebrew", sans-serif;
 }
 
 .header-buttons {
@@ -20,24 +24,29 @@
 }
 
 .header-buttons a {
-  font-weight: 600;
-  border: none;
   border-radius: 6px;
   padding: 10px 20px;
-  background-color: #338573;
-  cursor: pointer;
-  color: white;
 }
 
-.header-buttons a:first-child {
+.bold-link {
+  background-color: #338573;
+  color: white;
+  font-weight: 600;
+}
+
+.light-link {
   background-color: white;
   color: #338573;
   font-weight: 100;
 }
 
+.bold-link,
+.light-link {
+  font-family: "Noto Sans Hebrew", sans-serif;
+}
+
 .menu-icon {
   position: relative;
-  /* border: 1px solid black; */
 }
 
 .menu-icon svg {
@@ -65,7 +74,7 @@
 
 .menu a {
   background-color: white;
-  font-weight: 100;
+  font-weight: 500;
   border-radius: 0;
   color: #338573;
   padding: 12px 14px;

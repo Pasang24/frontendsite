@@ -21,3 +21,11 @@ body,
   display: flex;
   flex-direction: column;
 }
+
+#modal-container {
+  position: relative;
+}
+
+.prevent-scroll {
+  overflow: hidden;
+}

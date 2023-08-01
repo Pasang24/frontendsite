@@ -176,6 +176,11 @@ input[type="checkbox"] {
   margin-bottom: 2px;
 }
 
+.form-error {
+  color: red;
+  font-size: 12px;
+}
+
 @media screen and (width < 900px) {
   .input-section {
     flex-direction: column;
