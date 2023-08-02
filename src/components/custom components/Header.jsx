@@ -65,7 +65,7 @@ function Header() {
                 size={35}
               />
               <div className="menu">
-                <Link>Profile</Link>
+                <Link onClick={handleMenuToggle} to="/profile">Profile</Link>
                 <Link
                   onClick={handleMenuToggle}
                   className="menu-icon-btn"
@@ -88,7 +88,7 @@ function Header() {
                 size={35}
               />
               <div className="menu">
-                <Link>Profile</Link>
+                <Link onClick={handleMenuToggle} to="/profile">Profile</Link>
                 <Link onClick={handleMenuToggle} to="/postjob">
                   Post a Job
                 </Link>

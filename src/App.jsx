@@ -3,13 +3,15 @@ import Footer from "./components/custom components/Footer.jsx";
 import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router";
 import LoginPage from "./pages/LoginPage";
-import "./App.css";
 import Register from "./pages/Register.jsx";
+import Profile from "./pages/Profile.jsx";
 import PostJobPage from "./pages/PostJobPage.jsx";
 import ShowJob from "./pages/jobs/ShowJob.jsx";
 import PostedJobs from "./pages/jobs/PostedJobs.jsx";
 import AppliedJobs from "./pages/jobs/AppliedJobs.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
+
+import "./App.css";
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="job/:id" element={<ShowJob />} />
         

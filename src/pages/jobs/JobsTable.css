@@ -12,6 +12,10 @@
   box-shadow: 2px 2px 1px #e3e3e3, -1px -1px 1px #e3e3e3;
 }
 
+.showcontainer{
+  margin: 20px;
+}
+
 .jobs-table-header,
 .jobs-table-row {
   display: grid;
@@ -45,4 +49,38 @@
 
 .job-actions svg {
   cursor: pointer;
+}
+
+.btn{
+  display:flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+.btn button{
+  padding: 10px 6px;
+  border: none;
+  background-color: #338573;
+  color: white;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.list{
+  display: flex;
+  flex-direction: column;
+}
+
+.list h2{
+  margin:2px;
+}
+
+.list span{
+  font-weight:50;
+  font-size:20px
+}
+
+.desc h3{
+  margin-top: 10px;
 }

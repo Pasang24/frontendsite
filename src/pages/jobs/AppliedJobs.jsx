@@ -83,7 +83,7 @@ function AppliedJobs() {
           <Link to={`/job/${job.jobs.job_id._id}`}>
           <AiOutlineEye size={18} fill="#338573" />
           </Link>
-          <RxCross1 size={18} color="#FA0606" />
+          {/* <RxCross1 size={18} color="#FA0606" /> */}
         </span>
       </div>
     );

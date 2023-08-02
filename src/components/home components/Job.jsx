@@ -35,9 +35,10 @@ function Job({ job }) {
           </div>
         </div>
 
-        <Link to={`/jobs/${job._id}`}>
+        <Link to={`/job/${job._id}`}>
           <button>View Details</button>
         </Link>
+
       </div>
     </div>
   );
