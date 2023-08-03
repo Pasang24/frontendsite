@@ -9,6 +9,7 @@ import axios from "axios";
 function PostJobPage() {
 
   const {id} = useParams();
+  console.log(id);
   const navigate = useNavigate();
   const [job, setJob] = useState({
     title: "",
@@ -43,12 +44,13 @@ function PostJobPage() {
   
   useEffect(() => {
     if (id) {
-      axios.get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`)
+      axios.get(`${import.meta.env.VITE_SERVER_URL}/jobs/${id}`)
       .then(res => {
+        console.log(res);
         setJob(res.data)
       })
     }
-  }, [job]);
+  }, []);
 
   const handleCategoryChange = (event) => {
     const cat = event.target.value;
@@ -74,7 +76,7 @@ function PostJobPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("hello world");
+    console.log(job);
     const checkboxValidation = validateCheckbox();
     if (checkboxValidation) {
       console.log("has category");
@@ -265,6 +267,8 @@ function PostJobPage() {
               </div>
             </div>
           </div>
+
+
           <div className="form-field">
             <label>Upload Image</label>
             <div
@@ -274,11 +278,14 @@ function PostJobPage() {
               className="image-input-wrapper"
             >
               <input
+
                 onChange={({ target: { files } }) => {
-                  files[0] && setFileName(files[0].name);
+                  console.log(files[0]);
+                  files && setFileName(files[0].name);
                   if (files) {
-                    setJob({ ...job, images: URL.createObjectURL(files[0]) });
+                    setJob({ ...job, images: files[0].name });
                   }
+
                 }}
                 className="image-input"
                 name="images"
@@ -286,6 +293,7 @@ function PostJobPage() {
                 accept="image/*"
                 hidden
               />
+
               {job.images ? (
                 <img src={job.images} />
               ) : (
@@ -294,7 +302,9 @@ function PostJobPage() {
                   <p>Browse Files to upload</p>
                 </>
               )}
+
             </div>
+
             <div className="image-remove-btn-wrapper">
               <AiFillFileImage color="#338573" />
               <div>
