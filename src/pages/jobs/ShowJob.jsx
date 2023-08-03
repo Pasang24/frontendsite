@@ -7,7 +7,7 @@ function ShowJob() {
   const { id } = useParams();
   const [job, setJob] = useState({});
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/jobs/${id}`).then((res) => {
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`).then((res) => {
       console.log(res);
       setJob(res.data);
     });
