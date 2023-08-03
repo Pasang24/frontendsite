@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
-import PostJobPage from "./pages/PostJobPage.jsx";
+import PostJobPage from "./pages/jobs/PostJobPage.jsx";
 import ShowJob from "./pages/jobs/ShowJob.jsx";
 import PostedJobs from "./pages/jobs/PostedJobs.jsx";
 import AppliedJobs from "./pages/jobs/AppliedJobs.jsx";
@@ -28,6 +28,7 @@ function App() {
         
         <Route element={<ProtectedRoutes role="recruiter" />} >
         <Route path="/postjob" element={<PostJobPage />} />
+        <Route path="/editjob/:id" element={<PostJobPage />} />
         <Route path="/postedjobs" element={<PostedJobs />} />
         </Route>
 

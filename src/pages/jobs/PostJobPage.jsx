@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { MdCloudUpload } from "react-icons/md";
 import { AiFillFileImage } from "react-icons/ai";
-import "./Form.css";
+import "../Form.css";
+
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function PostJobPage() {
+
+  const {id} = useParams();
+  const navigate = useNavigate();
   const [job, setJob] = useState({
     title: "",
     company: "",
@@ -36,7 +42,12 @@ function PostJobPage() {
   ];
   
   useEffect(() => {
-    console.log(job);
+    if (id) {
+      axios.get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`)
+      .then(res => {
+        setJob(res.data)
+      })
+    }
   }, [job]);
 
   const handleCategoryChange = (event) => {
@@ -70,6 +81,28 @@ function PostJobPage() {
     } else {
       console.log("no category");
     }
+
+    let method = "post"
+    let url = `${import.meta.env.VITE_SERVER_URL}/job`
+
+    if(id){
+      method = "put"
+      url = `${import.meta.env.VITE_SERVER_URL}/job/${id}`
+    }
+
+    axios[method](url,job, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+    .then(res => {
+      console.log(res);
+      navigate("/");
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
   };
 
   const renderCategories = categories.map((category, indx) => {

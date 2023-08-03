@@ -92,7 +92,9 @@ function PostedJobs() {
           <Link to={`/job/${job._id}`} >
           <AiOutlineEye size={18} fill="#338573" />
           </Link>
+          <Link to={`/editjob/${job._id}`}>
           <GoPencil size={18} fill="#04BCF6" />
+          </Link>
           <RiDeleteBin7Line size={18} fill="#FA0606" onClick={()=>deleteJob(job._id)}/>
         </span>
       </div>
