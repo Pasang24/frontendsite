@@ -12,7 +12,7 @@
   box-shadow: 2px 2px 1px #e3e3e3, -1px -1px 1px #e3e3e3;
 }
 
-.showcontainer{
+.showcontainer {
   margin: 20px;
 }
 
@@ -47,17 +47,21 @@
   gap: 10px;
 }
 
+.job-actions a {
+  display: flex;
+}
+
 .job-actions svg {
   cursor: pointer;
 }
 
-.btn{
-  display:flex;
+.btn {
+  display: flex;
   justify-content: center;
   margin: 10px auto;
 }
 
-.btn button{
+.btn button {
   padding: 10px 6px;
   border: none;
   background-color: #338573;
@@ -67,20 +71,20 @@
   cursor: pointer;
 }
 
-.list{
+.list {
   display: flex;
   flex-direction: column;
 }
 
-.list h2{
-  margin:2px;
+.list h2 {
+  margin: 2px;
 }
 
-.list span{
-  font-weight:50;
-  font-size:20px
+.list span {
+  font-weight: 50;
+  font-size: 20px;
 }
 
-.desc h3{
+.desc h3 {
   margin-top: 10px;
 }

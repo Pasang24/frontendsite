@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Loader from "./Loader";
-import "./LoaderContainer.css";
+import "./ModalWrapper.css";
 
 function LoaderContainer() {
   useEffect(() => {
@@ -10,7 +10,7 @@ function LoaderContainer() {
   });
 
   return (
-    <div className="loader-container">
+    <div className="modal-wrapper">
       <Loader />
     </div>
   );
