@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function SearchBar({ search_term, setSearchTerm }) {
+function SearchBar() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="searchbar-wrapper">
       <div className="search-left-content">
@@ -17,17 +19,16 @@ function SearchBar({ search_term, setSearchTerm }) {
           className="searchbar"
           onSubmit={(event) => {
             event.preventDefault();
+            if (searchTerm.trim().length > 0) navigate(`/search/${searchTerm}`);
           }}
         >
           <input
             type="text"
             placeholder="Search by job title..."
-            value={search_term}
+            value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button type="submit">
-            <Link to={`/search/${search_term}`} className="linker">Search</Link>
-          </button>
+          <button type="submit">Search</button>
         </form>
       </div>
     </div>

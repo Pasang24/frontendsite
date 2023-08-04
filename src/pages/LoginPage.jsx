@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { RiErrorWarningFill } from "react-icons/ri";
 import LoaderContainer from "../components/loader components/LoaderContainer";
 import "./Form.css";
 
@@ -63,7 +64,10 @@ function LoginPage() {
               value={payload.email}
             />
             {error === "Invalid email" && (
-              <span className="form-error">Invalid Email</span>
+              <div className="form-error">
+                <RiErrorWarningFill />
+                <span>Invalid Email</span>
+              </div>
             )}
           </div>
           <div className="form-field">
@@ -78,7 +82,10 @@ function LoginPage() {
               value={payload.password}
             />
             {error === "Invalid Password" && (
-              <span className="form-error">Invalid Password!</span>
+              <div className="form-error">
+                <RiErrorWarningFill />
+                <span>Invalid Password</span>
+              </div>
             )}
           </div>
           <div className="form-field">
@@ -93,7 +100,10 @@ function LoginPage() {
               <option value="recruiter">Recruiter</option>
             </select>
             {error === "Invalid role" && (
-              <span className="form-error">Invalid Role!</span>
+              <div className="form-error">
+                <RiErrorWarningFill />
+                <span>Invalid Role</span>
+              </div>
             )}
           </div>
           <button className="form-btn" disabled={loggingIn}>
