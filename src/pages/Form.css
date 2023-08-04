@@ -177,6 +177,9 @@ input[type="checkbox"] {
 }
 
 .form-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: red;
   font-size: 12px;
 }
