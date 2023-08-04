@@ -7,7 +7,7 @@ import { FaUserTie } from "react-icons/fa";
 import Category from "./Category.jsx";
 import "./CategoryList.css";
 
-function CategoryList(category, setCategory) {
+function CategoryList({category, setCategory}) {
   const categories = [
     { name: "Cybersecurity", icon: <SiSecurityscorecard size={20} /> },
     { name: "Frontend", icon: <SiFrontendmentor size={20} /> },

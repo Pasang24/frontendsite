@@ -16,6 +16,7 @@
   margin: 0 auto;
 }
 
+
 @media screen and (width < 690px) {
   .category-wrapper {
     grid-template-columns: repeat(4, 1fr);

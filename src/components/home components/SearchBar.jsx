@@ -1,5 +1,6 @@
 import React from "react";
 import "./SearchBar.css";
+import { Link } from "react-router-dom";
 
 function SearchBar({ search_term, setSearchTerm }) {
   return (
@@ -24,7 +25,9 @@ function SearchBar({ search_term, setSearchTerm }) {
             value={search_term}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button type="submit">Search</button>
+          <button type="submit">
+            <Link to={`/search/${search_term}`} className="linker">Search</Link>
+          </button>
         </form>
       </div>
     </div>

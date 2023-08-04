@@ -3,7 +3,7 @@ import Job from "./Job.jsx";
 import "./JobList.css";
 import Skeleton from "../loader components/Skeleton.jsx";
 
-function JobList({ jobs, loading, sort, setSort }) {
+function JobList({ jobs, loading, sort, setSort, check }) {
   const handleSortMenuToggle = () => {
     const sortMenuEl = document.querySelector(".sort-menu");
     if (sortMenuEl.classList.contains("show-sort-menu")) {
@@ -20,7 +20,13 @@ function JobList({ jobs, loading, sort, setSort }) {
   const renderJobs = jobs.map((job, indx) => <Job job={job} key={indx} />);
   return (
     <div className="joblist-wrapper">
-      <h2 className="joblist-title">All Popular Listed Jobs</h2>
+      {
+        (check)
+        ?
+        <h2 className="joblist-title">All Popular Listed Jobs</h2>
+        :
+        <h2 className="joblist-title">Search Results</h2>
+        }
       <div className="sort-btn-wrapper">
         <div onClick={handleSortMenuToggle} className="sort-btn">
           <MdOutlineSort size={20} />

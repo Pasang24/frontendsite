@@ -64,7 +64,7 @@ function HomePage() {
     <div className="page-wrapper">
       <SearchBar search_term={search_term} setSearchTerm={setSearchTerm} />
       <CategoryList category={category} setCategory={setCategory} />
-      <JobList jobs={jobs} loading={loading} sort={sort} setSort={setSort} />
+      <JobList jobs={jobs} loading={loading} sort={sort} setSort={setSort} check={true}/>
       {!loading && (
         <Pagination
           currentPage={metadata.page}
