@@ -1,6 +1,6 @@
-import "./TableLoader.css";
+import "./SpinnerLoader.css";
 
-function TableLoader() {
+function SpinnerLoader() {
   return (
     <div className="table-loader-wrapper">
       <span className="table-loader"></span>
@@ -9,4 +9,4 @@ function TableLoader() {
   );
 }
 
-export default TableLoader;
+export default SpinnerLoader;

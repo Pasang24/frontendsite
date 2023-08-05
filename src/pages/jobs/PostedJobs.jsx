@@ -6,7 +6,7 @@ import { GoPencil } from "react-icons/go";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import DialougeModal from "../../components/custom components/DialougeModal";
-import TableLoader from "../../components/loader components/TableLoader";
+import SpinnerLoader from "../../components/loader components/SpinnerLoader";
 import "./JobsTable.css";
 
 function PostedJobs() {
@@ -95,7 +95,7 @@ function PostedJobs() {
           </div>
           {!loading && postedjobs.length > 0 && renderJobs}
         </div>
-        {loading && <TableLoader />}
+        {loading && <SpinnerLoader />}
         {!loading && postedjobs.length === 0 && (
           <h2 className="jobtable-status">No Jobs Posted</h2>
         )}

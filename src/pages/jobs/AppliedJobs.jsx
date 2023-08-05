@@ -6,7 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ShowJob from "./ShowJob";
-import TableLoader from "../../components/loader components/TableLoader";
+import SpinnerLoader from "../../components/loader components/SpinnerLoader";
 import "./JobsTable.css";
 
 function AppliedJobs() {
@@ -108,7 +108,7 @@ function AppliedJobs() {
         </div>
         {!loading && appliedjobs.length > 0 && renderJobs}
       </div>
-      {loading && <TableLoader />}
+      {loading && <SpinnerLoader />}
       {!loading && appliedjobs.length === 0 && (
         <h2 className="jobtable-status">No Jobs Applied</h2>
       )}
