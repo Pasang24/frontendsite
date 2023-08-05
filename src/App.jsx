@@ -25,23 +25,18 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route
-          path="/login"
-          element={role === "noRole" ? <LoginPage /> : <ForbiddenPage />}
-        />
-        <Route
-          path="/register"
-          element={role === "noRole" ? <Register /> : <ForbiddenPage />}
-        />
+        <Route element={<ProtectedRoutes check="formpage" />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
         <Route path="/search/:search_term" element={<SearchedJobs />} />
         <Route path="/charts" element={<Charts />} />
         <Route path="job/:id" element={<ShowJob />} />
 
-        <Route
-          path="/profile"
-          element={role === "noRole" ? <ForbiddenPage /> : <Profile />}
-        />
+        <Route element={<ProtectedRoutes check="profile" />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
         <Route element={<ProtectedRoutes role="recruiter" />}>
           <Route path="/postjob" element={<PostJobPage />} />
