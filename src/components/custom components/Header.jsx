@@ -45,6 +45,9 @@ function Header() {
         <Link to="/">JobsPortal</Link>
       </h2>
       <div className="header-buttons">
+        <Link to="/charts" className="light-link">
+          Charts
+        </Link>
         {role === "noRole" && (
           <>
             <Link to="/login" className="light-link">
@@ -65,7 +68,9 @@ function Header() {
                 size={35}
               />
               <div className="menu">
-                <Link onClick={handleMenuToggle} to="/profile">Profile</Link>
+                <Link onClick={handleMenuToggle} to="/profile">
+                  Profile
+                </Link>
                 <Link
                   onClick={handleMenuToggle}
                   className="menu-icon-btn"
@@ -88,7 +93,9 @@ function Header() {
                 size={35}
               />
               <div className="menu">
-                <Link onClick={handleMenuToggle} to="/profile">Profile</Link>
+                <Link onClick={handleMenuToggle} to="/profile">
+                  Profile
+                </Link>
                 <Link onClick={handleMenuToggle} to="/postjob">
                   Post a Job
                 </Link>

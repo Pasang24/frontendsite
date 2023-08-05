@@ -22,7 +22,6 @@ function AppliedJobs() {
         },
       })
       .then((res) => {
-        // console.log(res);
         setAppliedjobs(res.data);
       })
       .catch((err) => {
@@ -33,51 +32,7 @@ function AppliedJobs() {
       });
   }, []);
 
-  // const jobs = [
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  //   {
-  //     title: "Larvel Developer",
-  //     location: "Putalisadak",
-  //     applied_date: "07/30/2023",
-  //     closing_date: "08/13/2023",
-  //   },
-  // ];
-
+ 
   const renderJobs = appliedjobs.map((job, indx) => {
     return (
       <div className="jobs-table-row" key={indx}>

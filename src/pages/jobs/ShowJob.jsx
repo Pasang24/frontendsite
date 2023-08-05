@@ -18,7 +18,6 @@ function ShowJob() {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`)
       .then((res) => {
-        console.log(res);
         setJob(res.data);
       })
       .finally(() => {
@@ -41,7 +40,6 @@ function ShowJob() {
         }
       )
       .then((res) => {
-        console.log(res);
         navigate("/appliedjobs");
       })
       .finally(() => {

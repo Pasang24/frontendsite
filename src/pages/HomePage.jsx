@@ -35,7 +35,6 @@ function HomePage() {
         }&search_term=&category=${category}&sortBy=${sort}`
       )
       .then((res) => {
-        console.log(res.data.data);
         setJobs(res.data.data);
         if (res.data.meta) {
           setMetaData({
@@ -50,9 +49,9 @@ function HomePage() {
       });
   }
   useEffect(() => {
-    // const debouncedFetchJobs = debounce(fetchJobs, 500);
-    // debouncedFetchJobs();
-    fetchJobs();
+    const debouncedFetchJobs = debounce(fetchJobs, 500);
+    debouncedFetchJobs();
+    // fetchJobs();
   }, [metadata.page, category, sort]);
 
   const handlePageClick = (event) => {
