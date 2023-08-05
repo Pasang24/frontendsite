@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { RiErrorWarningFill } from "react-icons/ri";
 import {
   upperCharList,
   lowerCharList,
@@ -25,6 +26,7 @@ function Register() {
   });
 
   const [registering, setRegistering] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +43,10 @@ function Register() {
           navigate("/login");
         })
         .catch((err) => {
-          console.log(err);
+          setError(err.response.data);
+        })
+        .finally(() => {
+          setRegistering(false);
         });
     }
   };
@@ -90,6 +95,12 @@ function Register() {
                 onChange={handleChange}
                 value={payload.email}
               />
+              {error === "duplicate email" && (
+                <div className="form-error">
+                  <RiErrorWarningFill />
+                  <span>Email Already Used</span>
+                </div>
+              )}
             </div>
           </div>
           <div className="input-section">
@@ -190,7 +201,9 @@ function Register() {
               </>
             )}
           </div>
-          <button className="form-btn">Register</button>
+          <button className="form-btn" disabled={registering}>
+            {registering ? "Registering..." : "Register"}
+          </button>
           <div className="form-link">
             <span>Already have an account?</span> <Link to="/login">Login</Link>
           </div>
