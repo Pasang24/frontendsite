@@ -42,7 +42,7 @@ function PostJobPage() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`${import.meta.env.VITE_SERVER_URL}/jobs/${id}`).then((res) => {
+      axios.get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`).then((res) => {
         console.log(res);
         setJob(res.data);
       });
@@ -318,14 +318,15 @@ function PostJobPage() {
                 hidden
               />
 
-              {job.images ? (
-                <img src={URL.createObjectURL(job.images)} />
-              ) : (
-                <>
-                  <MdCloudUpload size={60} color="#e3e3e3" />
-                  <p>Browse Files to upload</p>
-                </>
-              )}
+              {!id &&
+                (job.images ? (
+                  <img src={URL.createObjectURL(job.images)} />
+                ) : (
+                  <>
+                    <MdCloudUpload size={60} color="#e3e3e3" />
+                    <p>Browse Files to upload</p>
+                  </>
+                ))}
             </div>
 
             <div className="image-remove-btn-wrapper">
