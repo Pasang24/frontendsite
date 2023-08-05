@@ -49,6 +49,10 @@ function PostJobPage() {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(job);
+  }, [job]);
+
   const handleCategoryChange = (event) => {
     const cat = event.target.value;
     const tempCategories = [...job.category];
@@ -297,13 +301,12 @@ function PostJobPage() {
               }}
               className="image-input-wrapper"
             >
-              
               <input
                 onChange={({ target: { files } }) => {
                   console.log(files[0]);
                   files && setFileName(files[0].name);
                   if (files) {
-                    setJob({ ...job, images: files[0].name });
+                    setJob({ ...job, images: files[0] });
                   }
                 }}
                 className="image-input"
@@ -316,7 +319,7 @@ function PostJobPage() {
               />
 
               {job.images ? (
-                <img src={job.images} />
+                <img src={URL.createObjectURL(job.images)} />
               ) : (
                 <>
                   <MdCloudUpload size={60} color="#e3e3e3" />
