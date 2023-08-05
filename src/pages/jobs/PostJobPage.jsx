@@ -7,9 +7,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function PostJobPage() {
-
-  const {id} = useParams();
-  console.log(id);
+  const { id } = useParams();
   const navigate = useNavigate();
   const [job, setJob] = useState({
     title: "",
@@ -26,7 +24,7 @@ function PostJobPage() {
     description: "",
     images: null,
   });
-  
+
   const [fileName, setFileName] = useState("No selected file");
 
   const categories = [
@@ -41,14 +39,13 @@ function PostJobPage() {
     { name: "Video Editor", value: "Video Editor" },
     { name: "HR", value: "HR" },
   ];
-  
+
   useEffect(() => {
     if (id) {
-      axios.get(`${import.meta.env.VITE_SERVER_URL}/jobs/${id}`)
-      .then(res => {
+      axios.get(`${import.meta.env.VITE_SERVER_URL}/jobs/${id}`).then((res) => {
         console.log(res);
-        setJob(res.data)
-      })
+        setJob(res.data);
+      });
     }
   }, []);
 
@@ -84,27 +81,47 @@ function PostJobPage() {
       console.log("no category");
     }
 
-    let method = "post"
-    let url = `${import.meta.env.VITE_SERVER_URL}/job`
+    let form_data = new FormData();
+    form_data.append("title", job.title);
+    form_data.append("company", job.company);
+    form_data.append("location", job.location);
+    form_data.append("phone", job.phone);
+    form_data.append("website", job.website);
+    form_data.append("salary", job.salary);
+    form_data.append("vacancy", job.vacancy);
+    form_data.append("requirements", job.requirements);
+    form_data.append("description", job.description);
+    form_data.append("posted_date", job.posted_date);
+    form_data.append("closing_date", job.closing_date);
 
-    if(id){
-      method = "put"
-      url = `${import.meta.env.VITE_SERVER_URL}/job/${id}`
+    form_data.append("images", job.images);
+
+    let tempCategory = [...job.category];
+    tempCategory.forEach((cat) => {
+      form_data.append("category", cat);
+    });
+
+    let method = "post";
+    let url = `${import.meta.env.VITE_SERVER_URL}/job`;
+
+    if (id) {
+      method = "put";
+      url = `${import.meta.env.VITE_SERVER_URL}/job/${id}`;
     }
 
-    axios[method](url,job, {
+    axios[method](url, form_data, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      "Content-Type": "multipart/form-data",
     })
-    .then(res => {
-      console.log(res);
-      navigate("/");
-    })
-    .catch(err => {
-      console.log(err);
-    })
-
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const renderCategories = categories.map((category, indx) => {
@@ -124,7 +141,11 @@ function PostJobPage() {
   return (
     <div className="page-wrapper">
       <h2 className="form-title">Create a Job</h2>
-      <form onSubmit={handleSubmit} className="form-wrapper">
+      <form
+        onSubmit={handleSubmit}
+        className="form-wrapper"
+        encType="multipart/form-data"
+      >
         <div className="input-section">
           <div className="form-field">
             <label htmlFor="company">Company Name</label>
@@ -268,7 +289,6 @@ function PostJobPage() {
             </div>
           </div>
 
-
           <div className="form-field">
             <label>Upload Image</label>
             <div
@@ -277,19 +297,20 @@ function PostJobPage() {
               }}
               className="image-input-wrapper"
             >
+              
               <input
-
                 onChange={({ target: { files } }) => {
                   console.log(files[0]);
                   files && setFileName(files[0].name);
                   if (files) {
                     setJob({ ...job, images: files[0].name });
                   }
-
                 }}
                 className="image-input"
                 name="images"
+                filename="images"
                 type="file"
+                // formEncType="multipart/form-data"
                 accept="image/*"
                 hidden
               />
@@ -302,7 +323,6 @@ function PostJobPage() {
                   <p>Browse Files to upload</p>
                 </>
               )}
-
             </div>
 
             <div className="image-remove-btn-wrapper">
