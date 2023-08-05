@@ -23,7 +23,7 @@ function SearchedJobs() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [sort]);
 
   return (
     <>
