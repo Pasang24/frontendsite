@@ -6,12 +6,15 @@ import { RxCross1 } from "react-icons/rx";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import ShowJob from "./ShowJob";
+import TableLoader from "../../components/loader components/TableLoader";
 import "./JobsTable.css";
-
 
 function AppliedJobs() {
   const [appliedjobs, setAppliedjobs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/appliedjob`, {
         headers: {
@@ -24,6 +27,9 @@ function AppliedJobs() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -77,11 +83,11 @@ function AppliedJobs() {
       <div className="jobs-table-row" key={indx}>
         <span>{job.jobs.job_id.title}</span>
         <span>{job.jobs.job_id.location}</span>
-        <span>{job.jobs.job_id.posted_date.slice(0,10) }</span>
-        <span>{job.jobs.job_id.closing_date.slice(0,10)}</span>
+        <span>{job.jobs.job_id.posted_date.slice(0, 10)}</span>
+        <span>{job.jobs.job_id.closing_date.slice(0, 10)}</span>
         <span className="job-actions">
           <Link to={`/job/${job.jobs.job_id._id}`}>
-          <AiOutlineEye size={18} fill="#338573" />
+            <AiOutlineEye size={18} fill="#338573" />
           </Link>
           {/* <RxCross1 size={18} color="#FA0606" /> */}
         </span>
@@ -100,8 +106,12 @@ function AppliedJobs() {
           <span>Deadline</span>
           <span>Action</span>
         </div>
-        {renderJobs}
+        {!loading && appliedjobs.length > 0 && renderJobs}
       </div>
+      {loading && <TableLoader />}
+      {!loading && appliedjobs.length === 0 && (
+        <h2 className="jobtable-status">No Jobs Applied</h2>
+      )}
     </div>
   );
 }

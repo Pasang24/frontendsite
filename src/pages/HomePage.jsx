@@ -12,7 +12,6 @@ function HomePage() {
     page: 1,
     per_page: 9,
   });
-  const [search_term, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,7 +32,7 @@ function HomePage() {
       .get(
         `${import.meta.env.VITE_SERVER_URL}/jobs?page=${
           metadata.page
-        }&search_term=${search_term}&category=${category}&sortBy=${sort}`
+        }&search_term=&category=${category}&sortBy=${sort}`
       )
       .then((res) => {
         console.log(res.data.data);
@@ -54,7 +53,7 @@ function HomePage() {
     // const debouncedFetchJobs = debounce(fetchJobs, 500);
     // debouncedFetchJobs();
     fetchJobs();
-  }, [metadata.page, search_term, category, sort]);
+  }, [metadata.page, category, sort]);
 
   const handlePageClick = (event) => {
     setMetaData({ ...metadata, page: event.selected + 1 });
@@ -62,9 +61,15 @@ function HomePage() {
 
   return (
     <div className="page-wrapper">
-      <SearchBar search_term={search_term} setSearchTerm={setSearchTerm} />
+      <SearchBar />
       <CategoryList category={category} setCategory={setCategory} />
-      <JobList jobs={jobs} loading={loading} sort={sort} setSort={setSort} check={true}/>
+      <JobList
+        jobs={jobs}
+        loading={loading}
+        sort={sort}
+        setSort={setSort}
+        check={true}
+      />
       {!loading && (
         <Pagination
           currentPage={metadata.page}
