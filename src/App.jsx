@@ -11,6 +11,7 @@ import PostedJobs from "./pages/jobs/PostedJobs.jsx";
 import AppliedJobs from "./pages/jobs/AppliedJobs.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 import SearchedJobs from "./pages/jobs/SearchedJobs.jsx";
+import Charts from "./components/Charts.jsx";
 
 import "./App.css";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/search/:search_term" element={<SearchedJobs />} />
+        <Route path="/charts" element={<Charts />} />
 
         <Route path="job/:id" element={<ShowJob />} />
         

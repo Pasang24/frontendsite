@@ -9,7 +9,6 @@ function ShowJob() {
   const [job, setJob] = useState({});
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_SERVER_URL}/job/${id}`).then((res) => {
-      console.log(res);
       setJob(res.data);
     });
   }, []);
@@ -24,7 +23,6 @@ function ShowJob() {
       }
     })
     .then(res => {
-      console.log(res);
       navigate("/appliedjobs")
     })
   }

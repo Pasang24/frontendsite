@@ -18,7 +18,6 @@ function SearchedJobs() {
         }/jobs?search_term=${search_term}&sortBy=${sort}`
       )
       .then((res) => {
-        console.log(res.data.data);
         setJobs(res.data.data);
       })
       .finally(() => {
