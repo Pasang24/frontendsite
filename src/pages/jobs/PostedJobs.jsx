@@ -6,14 +6,17 @@ import { GoPencil } from "react-icons/go";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import DialougeModal from "../../components/custom components/DialougeModal";
+import TableLoader from "../../components/loader components/TableLoader";
 import "./JobsTable.css";
 
 function PostedJobs() {
   const [postedjobs, setPostedjobs] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [jobId, setJobId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const posted_jobs = () => {
+    setLoading(true);
     axios
       .get(
         `${import.meta.env.VITE_SERVER_URL}/postedjobs/${localStorage.getItem(
@@ -28,6 +31,9 @@ function PostedJobs() {
       .then((res) => {
         console.log(res.data.data);
         setPostedjobs(res.data.data);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -60,7 +66,7 @@ function PostedJobs() {
             <AiOutlineEye size={18} fill="#338573" />
           </Link>
           <Link to={`/editjob/${job._id}`}>
-          <GoPencil size={18} fill="#04BCF6" />
+            <GoPencil size={18} fill="#04BCF6" />
           </Link>
           <RiDeleteBin7Line
             size={18}
@@ -87,8 +93,12 @@ function PostedJobs() {
             <span>Deadline</span>
             <span>Action</span>
           </div>
-          {renderJobs}
+          {!loading && postedjobs.length > 0 && renderJobs}
         </div>
+        {loading && <TableLoader />}
+        {!loading && postedjobs.length === 0 && (
+          <h2 className="jobtable-status">No Jobs Posted</h2>
+        )}
       </div>
       {showDeleteModal &&
         createPortal(
